@@ -90,8 +90,8 @@ void setup()
     delay(50);
     digitalWrite(16, HIGH); // while OLED is running, must set GPIO16 to high
 
-    I2C1.begin(I2C1_SDA_PIN, I2C1_SCL_PIN, 30000);
-    I2C2.begin(I2C2_SDA_PIN, I2C2_SCL_PIN, 100000);
+    I2C1.begin(I2C1_SDA_PIN, I2C1_SCL_PIN, 100000);  // OLED bus
+    I2C2.begin(I2C2_SDA_PIN, I2C2_SCL_PIN, 100000); // MPU6050 bus
 
     if (!mpu.begin(0x68, &I2C2, 0))
     {
@@ -105,7 +105,7 @@ void setup()
 
     mpu.setAccelerometerRange(MPU6050_RANGE_2_G);
     mpu.setGyroRange(MPU6050_RANGE_250_DEG);
-    mpu.setFilterBandwidth(MPU6050_BAND_5_HZ);
+    mpu.setFilterBandwidth(MPU6050_BAND_44_HZ);
 
     delay(50);
 
